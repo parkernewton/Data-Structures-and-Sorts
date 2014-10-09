@@ -2,7 +2,8 @@
  * 
  * Name: 			deque.c
  *
- * Description: 	
+ * Description: 	Implementation for a doubly-ended queue (deque) that stores integer values.
+ * 					A deque is a type of queue in which we can enqueue and dequeue elements from either the beginning or the end of the list.
  * 
  * Author: 			Parker C. Newton 
  * 
@@ -26,7 +27,7 @@ typedef struct deque {
 
 typedef struct node {
 	int data;
-	struct node * next, * prev;
+	struct node * next, * prev; 			//we will implement a circular doubly-linked list
 } NODE;
 
 
