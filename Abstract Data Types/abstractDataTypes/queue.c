@@ -36,10 +36,13 @@ QUEUE * createQueue(void){
 	QUEUE * queue = (QUEUE *)malloc(sizeof(QUEUE));
 	assert(queue != NULL);
 	queue->count = 0;
+
 	//next, we will allocate memory for and initialize the sentinel node
 	queue->head = (NODE *)malloc(sizeof(NODE));
+	assert(queue->head != NULL);
 	queue->head->next = queue->head;
 	queue->head->prev = queue->head;
+
 	return queue;
 }
 

@@ -16,11 +16,19 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-typedef struct stack STACK;
+STACK * createStack(void);
+//allocates and initializes a new stack ADT
 
-STACK createStack(void);
-void destroyStack(void);
-void push(int element);
-int pop(void);
+void destroyStack(STACK * stack);
+//de-allocates the stack ADT passed as a parameter
+
+void push(STACK * stack, int elemen);
+//pushes a new element to the stack passed as parameter
+
+int pop(STACK * stack);
+//pops the last element from the stack passed as a parameter
+
+int getStackCount(STACK * stack);
+//returns the number of elements in the stack passed as a parameter
 
 #endif /* STACK_H_ */
