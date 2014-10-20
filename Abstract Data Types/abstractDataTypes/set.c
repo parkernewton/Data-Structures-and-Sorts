@@ -122,7 +122,7 @@ bool removeFromSet(SET * set, int element){
 	}
 
 	//to remove this element, we simply replace it with the last item in the array
-	set->objects[location] = set->objects[--sseet->count];
+	set->objects[location] = set->objects[--set->count];
 	return true;
 }
 
