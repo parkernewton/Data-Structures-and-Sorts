@@ -3,7 +3,7 @@
  * Name: 			binarySearchTree.h
  *
  * Description: 	
- * 					Contains interface for a BST ADT that stores integer values.
+ * 					Contains interface for a BST ADT
  * 					A binary search tree (BST) is a binary tree ADT with the following properties:
  * 						1) Each subtree itself is a BST
  * 						2) All the nodes to the left of the root are less than the value of the root
@@ -20,27 +20,53 @@
 #ifndef BINARYSEARCHTREE_H_
 #define BINARYSEARCHTREE_H_
 
-BINSEARCHTREE * createBinSearchTree(void);
-//allocates and initializes a new binary search tree ADT
+#include <stdbool.h>
 
-void destoryBinSearchTree(BINSEARCHTREE * tree);
-//de-allocates a binary search tree ADT passed as a parameter
+typedef struct node {
+	void * data;
+	struct node * left;
+	struct node * right;
 
-int getBinSearchTreeCount(BINSEARCHTREE * tree);
-//returns the number of nodes in the BST
+} NODE;
 
-void * searchBinSearchTree(BINSEARCHTREE * tree, int data);
-//searches the BST for the specified data value and returns a pointer to the node
+typedef struct tree {
+	int count;
+	int (* compare)(void * argu1, void * argu2);
+	NODE * root;
+} BST;
 
-void traverseBinSearchTree(BINSEARCHTREE * tree);
-//in-order traversal of specified BST; prints to stdout
+BST * createBST(int(* compare)(void * argu1, void * argu2));
+//Allocates and initializes a new BST
+//Parameters: int(* compare)(void * argu1, void * argu2) -- pointer to function that compares node data values
+//Returns pointer to BST on success, NULL on error
 
-int insertIntoBinSearchTree(BINSEARCHTREE * tree, int data);
-//creates new tree node with specified data value and inserts into BST passed as a parameter
-//returns 1 on success and 0 on error
+BST * destroyBST(BST * tree);
+//De-allocates memory for all nodes in BST passed as parameter
 
-int removeFromBinSearchTree(BINSEARCHTREE * tree, int data);
-//removes node containing specified data value from the BST
-//returns 1 on success and 0 on error
+bool insertIntoBST(BST * tree, void * data);
+//Inserts specified data pointer into BST passed as parameter
+//Returns true on success, false on error
+
+bool deleteFromBST(BST * tree, void * dltKey);
+//Deletes node containing specified data value (dltKey) from the BST passed as a parameter
+//Returns true on success, false on error
+
+void * retrieveFromBST(BST * tree, void * keyPtr);
+//Retrieves specified data value (keyPtr) from BST passed as a parameter
+//Returns keyPtr on success, NULL on error
+
+void traverseBST(BST * tree, void(* process)(void *data));
+//Implements inorder traversal of BST passed as parameter
+//Executes inorder process function passed as parameter
+
+bool BSTIsEmpty(BST * tree);
+//Returns true if specified BST if empty, else false
+
+bool BSTIsFull(BST * tree);
+//Full BST is defined as having a size >= 0 where no additional memory can be allocated for a potential new node
+//Returns true if specified BST is full, else false
+
+int BSTCount(BST * tree);
+//Returns the number of nodes in the BST passed as a parameter, -1 on error
 
 #endif /* BINARYSEARCHTREE_H_ */
