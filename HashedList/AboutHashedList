@@ -1,0 +1,37 @@
+Hashed List 
+============================
+
+This project contains the following files: 
+- main.c -->> test program for the hashed list 
+- hashedList.h -->> hashed list interface file 
+- hashedList.c -->> hashed list implementation file 
+- input.txt -->> text file passed as a program parameter to main.c 
+
+A hashed list is an application of a hash table. A hash table is a data
+structure which maps each key (k) to a specific location determined by a 
+hash function (h(k)). Collisions result when multiple keys are mapped to the 
+same location. Collisions can be resolved by a variety of methods, but in this
+example we implement linear probing. Linear probing is a method for resolving
+collisions in which the location is incremented by one while the previous 
+location results in a collision. More formally, h(k,p) = h(k)+p, where p 
+takes on values ranging from -k to n-(k+1), inclusive, for a n-size hash table. 
+p is initialized to 0, and if there is a collision, p is incremented until 
+p = n-(k+1). If there is still a collision at p = n-(k+1), then p resets to -k, 
+and is incremented until p = k-1, at which point it can be determined that the 
+hash table is full. 
+
+This hash table is implemented as an array of type LISTING structs. Each 
+LISTING struct contains two strings: name and phone number. The list of names 
+and phone numbers is saved to the input text file, and the program will first 
+build the hashed list by parsing the text file and writing each name and phone 
+number to a discrete LISTING struct. The hashed location is then generated 
+from the hash function h(k) = (k%(n-1))+1, where k is the sum of all ASCII 
+values in the name string (excluding spaces and the null byte), and n is 
+the size of the hash table. Collisions are resolved by linear probing, and the 
+LISTING struct is then hashed to the generated location in the hash table. Next, 
+the user is prompted for a name to find in the hashed list. A hash key is 
+generated from the input text, and a location is generated from the hash function. 
+If the name is not found at this location we implement linear probing to search 
+for the desired listing. If we find this listing, we print the name, 
+location in the hash table, and phone number to the standard output. Else, we 
+notify the user that we were unable to find the listing. 
