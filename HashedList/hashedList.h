@@ -18,7 +18,7 @@ typedef struct listing {
 } LISTING;
 
 
-void buildList(LISTING phoneList[], int * last);
+void buildList(char * fileIn, LISTING phoneList[], int * last);
 
 void hashSearch(LISTING * phoneList, int last);
 

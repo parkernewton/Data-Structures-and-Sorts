@@ -15,13 +15,19 @@
 const int size = 50;
 
 
-int main(void){
-	LISTING phoneList[SIZE];
-	int last = SIZE - 1;
+int main(int argc, char * argv[]){
+	if(argc < 2){
+		printf("\nError: expected input text file. \n");
+		return -1;
+	}
+
+	char * fileIn = argv[1];
+	LISTING phoneList[size];
+	int last = size - 1;
 
 	printf("\nPhone Listing: \n");
 
-	buildList(phoneList, &last);
+	buildList(fileIn, phoneList, &last);
 	hashSearch(phoneList, last);
 
 	printf("\nEnd. \n");
