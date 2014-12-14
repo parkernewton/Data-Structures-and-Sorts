@@ -157,7 +157,7 @@ static NODE * _delete(BST * tree, NODE * root, void * data, bool * success){
 		else{
 			//pDel has 2 subtrees
 			//we take the largest value of the left subtree, and swap its data with that of pDel
-			NODE * pTemp = root->right;
+			NODE * pTemp = root->left;
 			while(pTemp != NULL){
 				pTemp = pTemp->right;
 			}
