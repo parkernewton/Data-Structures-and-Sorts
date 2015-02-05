@@ -20,15 +20,7 @@
 #include "deque.h"
 
 
-typedef struct deque {
-	int count;
-	struct node * head; 			//sentinel node
-} DEQUE;
 
-typedef struct node {
-	int data;
-	struct node * next, * prev; 			//we will implement a circular doubly-linked list
-} NODE;
 
 
 DEQUE * createDeque(void){
@@ -52,7 +44,7 @@ void destoryDeque(DEQUE * deque){
 
 	//first, we must de-allocate each node in the list
 	NODE * pCur = deque->head->next;
-	while(pCur != NULL){
+	while(pCur != deque->head){
 		pCur = pCur->next;
 		free(pCur->prev);
 	}

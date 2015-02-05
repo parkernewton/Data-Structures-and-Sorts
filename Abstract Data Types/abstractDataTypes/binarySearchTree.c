@@ -24,19 +24,6 @@
 #include "binarySearchTree.h"
 
 
-typedef struct node {
-	void * data;
-	struct node * left;
-	struct node * right;
-} NODE;
-
-typedef struct tree {
-	int count;
-	int(* compare)(void * argu1, void * argu2);
-	NODE * root;
-} BST;
-
-
 static NODE * _insert(BST * tree, NODE * root, NODE * pNew);
 
 static NODE * _delete(BST * tree, NODE * root, void * data, bool * success);
@@ -72,14 +59,12 @@ bool insertIntoBST(BST * tree, void * data){
 	pNew->left = NULL;
 	pNew->right = NULL;
 
-	if(tree->count == 0){
+	if((tree->count)++ == 0){
 		tree->root = pNew;
 	}
 	else {
 		_insert(tree, tree->root, pNew);
 	}
-
-	(tree->count)++;
 	return true;
 }
 
@@ -121,7 +106,7 @@ bool deleteFromBST(BST * tree, void * dltKey){
 	return success;
 }
 
-static NODE * _delete(BST * tree, NODE * root, void * data, bool * success){
+NODE * _delete(BST * tree, NODE * root, void * data, bool * success){
 	if(root == NULL){
 		//node containing data not found
 		*success = false;
@@ -224,14 +209,14 @@ BST * destroyBST(BST * tree){
 	 return NULL;
 }
 
-void _destroy(NODE * root){
+NODE * _destroy(NODE * root){
 	if(root){
 		_destroy(root->left);
 		free(root->data);
 		_destroy(root->right);
 		free(root);
 	}
-	return;
+	return root;
 }
 
 bool BSTIsEmpty(BST * tree){

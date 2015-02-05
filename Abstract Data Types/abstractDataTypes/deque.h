@@ -16,6 +16,16 @@
 #ifndef DEQUE_H_
 #define DEQUE_H_
 
+typedef struct deque {
+	int count;
+	struct node * head; 			//sentinel node
+} DEQUE;
+
+typedef struct node {
+	int data;
+	struct node * next, * prev; 			//we will implement a circular doubly-linked list
+} NODE;
+
 DEQUE * createDeque(void);
 //allocates and initializes a new deque ADT
 //returns the newly-initialized DEQUE pointer

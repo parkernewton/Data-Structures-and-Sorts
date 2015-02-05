@@ -40,7 +40,7 @@ BST * createBST(int(* compare)(void * argu1, void * argu2));
 //Parameters: int(* compare)(void * argu1, void * argu2) -- pointer to function that compares node data values
 //Returns pointer to BST on success, NULL on error
 
-BST * destroyBST(BST * tree);
+BST * destroyBST(BST * root);
 //De-allocates memory for all nodes in BST passed as parameter
 
 bool insertIntoBST(BST * tree, void * data);
